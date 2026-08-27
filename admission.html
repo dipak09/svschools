@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Apply online for admission to SV Schools for the 2026-27 academic session.">
+  <title>Admission | SV Schools</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/img/logo.svg" alt="SV Schools logo">
+        <span class="brand-text">SV Schools<small>Management System</small></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNav" aria-controls="mainNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="students.html">Students</a></li>
+          <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-sv" href="admission.html">Apply Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= PAGE HEAD ================= -->
+  <section class="page-head">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb small mb-2">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Admission</li>
+        </ol>
+      </nav>
+      <h1 class="mb-1">Online Admission Form</h1>
+      <p class="text-muted mb-0">Session 2026 - 27 &middot; Classes I to X</p>
+    </div>
+  </section>
+
+  <!-- ================= FORM + INFO ================= -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Form -->
+        <div class="col-lg-8">
+          <div class="alert alert-success alert-dismissible d-none" id="formSuccess" role="alert">
+            <strong>Application received.</strong> Our admission desk will call you within two working days
+            on the number you provided.
+            <button type="button" class="btn-close"></button>
+          </div>
+
+          <div class="form-card">
+            <form id="admissionForm" class="needs-validation" novalidate>
+
+              <h5 class="fw-bold mb-3">Student Details</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="admFirst" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="admFirst" required>
+                  <div class="invalid-feedback">Please enter the first name.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="admLast" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="admLast" required>
+                  <div class="invalid-feedback">Please enter the last name.</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="admDob" class="form-label">Date of Birth</label>
+                  <input type="date" class="form-control" id="admDob" required>
+                  <div class="invalid-feedback">Date of birth is required.</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="admGender" class="form-label">Gender</label>
+                  <select class="form-select" id="admGender" required>
+                    <option value="">Choose...</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="invalid-feedback">Please select an option.</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="admClass" class="form-label">Applying for Class</label>
+                  <select class="form-select" id="admClass" required>
+                    <option value="">Choose...</option>
+                    <option>Class I</option>
+                    <option>Class II</option>
+                    <option>Class III</option>
+                    <option>Class IV</option>
+                    <option>Class V</option>
+                    <option>Class VI</option>
+                    <option>Class VII</option>
+                    <option>Class VIII</option>
+                    <option>Class IX</option>
+                    <option>Class X</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a class.</div>
+                </div>
+                <div class="col-12">
+                  <label for="admPrevSchool" class="form-label">Previous School <span class="text-muted fw-normal">(optional)</span></label>
+                  <input type="text" class="form-control" id="admPrevSchool">
+                </div>
+              </div>
+
+              <h5 class="fw-bold mb-3">Parent / Guardian Details</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="admGuardian" class="form-label">Guardian Name</label>
+                  <input type="text" class="form-control" id="admGuardian" required>
+                  <div class="invalid-feedback">Guardian name is required.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="admRelation" class="form-label">Relationship</label>
+                  <select class="form-select" id="admRelation" required>
+                    <option value="">Choose...</option>
+                    <option>Mother</option>
+                    <option>Father</option>
+                    <option>Legal Guardian</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a relationship.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="admEmail" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="admEmail" required>
+                  <div class="invalid-feedback">Enter a valid email address.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="admPhone" class="form-label">Mobile Number</label>
+                  <input type="tel" class="form-control" id="admPhone" placeholder="10 digits" required>
+                  <div class="invalid-feedback">Enter a 10 digit mobile number.</div>
+                </div>
+                <div class="col-12">
+                  <label for="admAddress" class="form-label">Residential Address</label>
+                  <textarea class="form-control" id="admAddress" rows="3" required></textarea>
+                  <div class="invalid-feedback">Address is required.</div>
+                </div>
+              </div>
+
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="admTerms" required>
+                <label class="form-check-label" for="admTerms">
+                  I confirm the information above is correct and accept the school admission policy.
+                </label>
+                <div class="invalid-feedback">You must accept before submitting.</div>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2">
+                <button type="submit" class="btn btn-sv">Submit Application</button>
+                <button type="reset" class="btn btn-light px-4">Clear Form</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sidebar info -->
+        <div class="col-lg-4">
+          <div class="d-grid gap-3">
+            <div class="info-tile">
+              <h6 class="fw-bold mb-3">Admission Timeline</h6>
+              <ul class="list-unstyled small mb-0 d-grid gap-2">
+                <li><strong>Form opens:</strong> 01 Jan 2026</li>
+                <li><strong>Last date:</strong> 15 Mar 2026</li>
+                <li><strong>Entrance test:</strong> 28 Mar 2026</li>
+                <li><strong>Merit list:</strong> 10 Apr 2026</li>
+              </ul>
+            </div>
+
+            <div class="info-tile">
+              <h6 class="fw-bold mb-3">Documents Required</h6>
+              <ul class="small text-muted mb-0 ps-3">
+                <li>Birth certificate</li>
+                <li>Transfer certificate from previous school</li>
+                <li>Last two report cards</li>
+                <li>Aadhaar copy of student and guardian</li>
+                <li>Four passport size photographs</li>
+              </ul>
+            </div>
+
+            <div class="info-tile">
+              <h6 class="fw-bold mb-3">Admission Desk</h6>
+              <p class="small text-muted mb-2">Monday to Saturday, 9:00 AM - 4:00 PM</p>
+              <ul class="list-unstyled small mb-0 d-grid gap-1">
+                <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+                <li><a href="mailto:admissions@svschools.edu">admissions@svschools.edu</a></li>
+                <li class="text-muted">Station Road, Surat, Gujarat 395003</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section pt-0">
+    <div class="container">
+      <h2 class="section-title mb-4">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              Is there an application fee?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-muted">
+              The online form is free. A one time registration fee of &#8377; 500 is payable only after
+              a seat is offered.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              Do all applicants sit for the entrance test?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-muted">
+              Classes I and II are admitted through an informal interaction with the child and guardians.
+              Classes III to X sit for a written test in English, Mathematics and General Science.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              Is school transport available?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-muted">
+              Yes. Twelve buses cover routes across the city. Route and fare details are shared along
+              with the admission offer letter.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="assets/img/logo.svg" alt="SV Schools logo" width="40" height="40">
+            <span class="fw-bold text-white fs-5">SV Schools</span>
+          </div>
+          <p class="mb-0">A complete school management system built for administrators, teachers and parents.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="mb-3">Pages</h6>
+          <ul class="list-unstyled d-grid gap-2 mb-0">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="admission.html">Admission</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h6 class="mb-3">Modules</h6>
+          <ul class="list-unstyled d-grid gap-2 mb-0">
+            <li><a href="index.html#features">Attendance</a></li>
+            <li><a href="index.html#features">Fees &amp; Receipts</a></li>
+            <li><a href="index.html#features">Exams &amp; Results</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6 class="mb-3">Reach Us</h6>
+          <ul class="list-unstyled d-grid gap-2 mb-0">
+            <li>Station Road, Surat, Gujarat 395003</li>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:office@svschools.edu">office@svschools.edu</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom d-md-flex justify-content-between text-center text-md-start">
+        <span>&copy; 2026 SV Schools. All rights reserved.</span>
+        <span>Built with HTML5, CSS3, Bootstrap 5 &amp; jQuery.</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" type="button" aria-label="Back to top">&#8593;</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

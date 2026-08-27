@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Student directory - search, filter and manage student records at SV Schools.">
+  <title>Students | SV Schools</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/img/logo.svg" alt="SV Schools logo">
+        <span class="brand-text">SV Schools<small>Management System</small></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNav" aria-controls="mainNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="students.html">Students</a></li>
+          <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-sv" href="admission.html">Apply Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= PAGE HEAD ================= -->
+  <section class="page-head">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb small mb-2">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Students</li>
+        </ol>
+      </nav>
+      <div class="d-md-flex align-items-center justify-content-between">
+        <div>
+          <h1 class="mb-1">Student Directory</h1>
+          <p class="text-muted mb-0">Search, sort and manage enrolled students.</p>
+        </div>
+        <button class="btn btn-sv mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+          + Add Student
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DIRECTORY ================= -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="row g-3 mb-4">
+        <div class="col-lg-5">
+          <label for="searchInput" class="form-label">Search</label>
+          <input type="search" class="form-control" id="searchInput"
+                 placeholder="Name, roll no, guardian or phone...">
+        </div>
+        <div class="col-6 col-lg-3">
+          <label for="classFilter" class="form-label">Class</label>
+          <select class="form-select" id="classFilter">
+            <option value="">All classes</option>
+            <option>VI-A</option>
+            <option>VI-B</option>
+            <option>VII-A</option>
+            <option>VIII-A</option>
+            <option>IX-B</option>
+            <option>X-A</option>
+          </select>
+        </div>
+        <div class="col-6 col-lg-2">
+          <label for="statusFilter" class="form-label">Status</label>
+          <select class="form-select" id="statusFilter">
+            <option value="">All</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+        </div>
+        <div class="col-lg-2 d-flex align-items-end">
+          <button type="button" class="btn btn-sv-outline w-100" id="resetFilters">Reset</button>
+        </div>
+      </div>
+
+      <p class="text-muted small">Showing <strong id="resultCount">0</strong> student(s).</p>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-responsive">
+          <table class="table align-middle mb-0" id="studentTable">
+            <thead>
+              <tr>
+                <th class="sortable">Roll <span class="arrow">&#9650;&#9660;</span></th>
+                <th class="sortable">Name <span class="arrow">&#9650;&#9660;</span></th>
+                <th class="sortable">Class <span class="arrow">&#9650;&#9660;</span></th>
+                <th>Guardian</th>
+                <th>Contact</th>
+                <th class="sortable">Status <span class="arrow">&#9650;&#9660;</span></th>
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="s-roll">1001</td>
+                <td><span class="avatar me-2">AP</span><span class="s-name">Aarav Patel</span></td>
+                <td class="s-class">VI-A</td>
+                <td>Nilesh Patel</td>
+                <td>+91 98250 11223</td>
+                <td><span class="badge text-bg-success s-status">Active</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1002</td>
+                <td><span class="avatar me-2">IS</span><span class="s-name">Isha Sharma</span></td>
+                <td class="s-class">VI-B</td>
+                <td>Rakesh Sharma</td>
+                <td>+91 99043 55110</td>
+                <td><span class="badge text-bg-success s-status">Active</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1003</td>
+                <td><span class="avatar me-2">RM</span><span class="s-name">Rohan Mehta</span></td>
+                <td class="s-class">VII-A</td>
+                <td>Vipul Mehta</td>
+                <td>+91 97129 88776</td>
+                <td><span class="badge text-bg-secondary s-status">Inactive</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1004</td>
+                <td><span class="avatar me-2">SD</span><span class="s-name">Sneha Desai</span></td>
+                <td class="s-class">VIII-A</td>
+                <td>Manish Desai</td>
+                <td>+91 90333 41200</td>
+                <td><span class="badge text-bg-success s-status">Active</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1005</td>
+                <td><span class="avatar me-2">KJ</span><span class="s-name">Kabir Joshi</span></td>
+                <td class="s-class">IX-B</td>
+                <td>Anand Joshi</td>
+                <td>+91 93777 65432</td>
+                <td><span class="badge text-bg-success s-status">Active</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1006</td>
+                <td><span class="avatar me-2">MN</span><span class="s-name">Meera Nair</span></td>
+                <td class="s-class">X-A</td>
+                <td>Suresh Nair</td>
+                <td>+91 98980 22114</td>
+                <td><span class="badge text-bg-success s-status">Active</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1007</td>
+                <td><span class="avatar me-2">AK</span><span class="s-name">Arjun Kulkarni</span></td>
+                <td class="s-class">X-A</td>
+                <td>Deepak Kulkarni</td>
+                <td>+91 96011 33447</td>
+                <td><span class="badge text-bg-secondary s-status">Inactive</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td class="s-roll">1008</td>
+                <td><span class="avatar me-2">PS</span><span class="s-name">Priya Shah</span></td>
+                <td class="s-class">VII-A</td>
+                <td>Jignesh Shah</td>
+                <td>+91 94260 77889</td>
+                <td><span class="badge text-bg-success s-status">Active</span></td>
+                <td class="text-end"><button type="button" class="btn btn-sm btn-outline-danger btn-remove">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="noResults" class="text-center py-5" style="display:none;">
+          <p class="fw-semibold mb-1">No students match your search.</p>
+          <p class="text-muted small mb-0">Try a different keyword or reset the filters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ADD STUDENT MODAL ================= -->
+  <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="addStudentForm" class="needs-validation" novalidate>
+          <div class="modal-header">
+            <h5 class="modal-title" id="addStudentLabel">Add New Student</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-6">
+                <label for="stuRoll" class="form-label">Roll No</label>
+                <input type="number" class="form-control" id="stuRoll" required>
+                <div class="invalid-feedback">Roll number is required.</div>
+              </div>
+              <div class="col-6">
+                <label for="stuClass" class="form-label">Class</label>
+                <select class="form-select" id="stuClass" required>
+                  <option value="">Choose...</option>
+                  <option>VI-A</option>
+                  <option>VI-B</option>
+                  <option>VII-A</option>
+                  <option>VIII-A</option>
+                  <option>IX-B</option>
+                  <option>X-A</option>
+                </select>
+                <div class="invalid-feedback">Select a class.</div>
+              </div>
+              <div class="col-12">
+                <label for="stuName" class="form-label">Student Name</label>
+                <input type="text" class="form-control" id="stuName" required minlength="3">
+                <div class="invalid-feedback">Enter at least 3 characters.</div>
+              </div>
+              <div class="col-12">
+                <label for="stuGuardian" class="form-label">Guardian Name</label>
+                <input type="text" class="form-control" id="stuGuardian" required>
+                <div class="invalid-feedback">Guardian name is required.</div>
+              </div>
+              <div class="col-6">
+                <label for="stuContact" class="form-label">Contact</label>
+                <input type="tel" class="form-control" id="stuContact" placeholder="+91 ..." required>
+                <div class="invalid-feedback">Contact number is required.</div>
+              </div>
+              <div class="col-6">
+                <label for="stuStatus" class="form-label">Status</label>
+                <select class="form-select" id="stuStatus" required>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-sv">Save Student</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="appToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">Saved.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="assets/img/logo.svg" alt="SV Schools logo" width="40" height="40">
+            <span class="fw-bold text-white fs-5">SV Schools</span>
+          </div>
+          <p class="mb-0">A complete school management system built for administrators, teachers and parents.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="mb-3">Pages</h6>
+          <ul class="list-unstyled d-grid gap-2 mb-0">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="admission.html">Admission</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h6 class="mb-3">Modules</h6>
+          <ul class="list-unstyled d-grid gap-2 mb-0">
+            <li><a href="index.html#features">Attendance</a></li>
+            <li><a href="index.html#features">Fees &amp; Receipts</a></li>
+            <li><a href="index.html#features">Exams &amp; Results</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6 class="mb-3">Reach Us</h6>
+          <ul class="list-unstyled d-grid gap-2 mb-0">
+            <li>Station Road, Surat, Gujarat 395003</li>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:office@svschools.edu">office@svschools.edu</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom d-md-flex justify-content-between text-center text-md-start">
+        <span>&copy; 2026 SV Schools. All rights reserved.</span>
+        <span>Built with HTML5, CSS3, Bootstrap 5 &amp; jQuery.</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" type="button" aria-label="Back to top">&#8593;</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/* ==========================================================================
+   SV Schools - School Management System
+   Custom CSS3 layer on top of Bootstrap 5
+   ========================================================================== */
+
+:root {
+  --sv-primary: #1d4ed8;
+  --sv-primary-dark: #1633a8;
+  --sv-accent: #0ea5e9;
+  --sv-ink: #0f172a;
+  --sv-muted: #64748b;
+  --sv-surface: #f5f7fb;
+  --sv-border: #e2e8f0;
+  --sv-radius: 14px;
+  --sv-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: var(--sv-ink);
+  background-color: #fff;
+}
+
+a { text-decoration: none; }
+
+/* ---------- Navbar / Logo ---------- */
+.navbar-brand img { height: 40px; width: 40px; }
+
+.brand-text {
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: var(--sv-primary);
+}
+.brand-text small {
+  display: block;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--sv-muted);
+}
+
+.navbar {
+  box-shadow: 0 2px 14px rgba(15, 23, 42, .07);
+  background: #fff;
+}
+.navbar .nav-link {
+  font-weight: 600;
+  color: var(--sv-ink);
+  padding: .55rem .95rem !important;
+  border-radius: 8px;
+  transition: color .2s ease, background-color .2s ease;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus { color: var(--sv-primary); background: rgba(29, 78, 216, .07); }
+.navbar .nav-link.active { color: #fff !important; background: var(--sv-primary); }
+
+/* ---------- Buttons ---------- */
+.btn-sv {
+  background: var(--sv-primary);
+  border-color: var(--sv-primary);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: .6rem 1.4rem;
+}
+.btn-sv:hover, .btn-sv:focus {
+  background: var(--sv-primary-dark);
+  border-color: var(--sv-primary-dark);
+  color: #fff;
+}
+.btn-sv-outline {
+  border: 2px solid var(--sv-primary);
+  color: var(--sv-primary);
+  font-weight: 600;
+  border-radius: 10px;
+  padding: .55rem 1.35rem;
+}
+.btn-sv-outline:hover { background: var(--sv-primary); color: #fff; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--sv-primary) 0%, var(--sv-accent) 100%);
+  color: #fff;
+  padding: 5rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .09);
+}
+.hero h1 { font-weight: 800; font-size: clamp(2rem, 4vw, 3.1rem); }
+.hero p.lead { color: rgba(255, 255, 255, .9); max-width: 560px; }
+
+.page-head {
+  background: var(--sv-surface);
+  border-bottom: 1px solid var(--sv-border);
+  padding: 2.6rem 0;
+}
+.page-head h1 { font-weight: 800; }
+
+/* ---------- Cards ---------- */
+.section { padding: 4rem 0; }
+.section-title { font-weight: 800; }
+.section-sub { color: var(--sv-muted); max-width: 620px; margin: 0 auto; }
+
+.feature-card {
+  background: #fff;
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius);
+  padding: 1.75rem;
+  height: 100%;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.feature-card:hover { transform: translateY(-6px); box-shadow: var(--sv-shadow); }
+
+.feature-icon {
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: rgba(29, 78, 216, .1);
+  color: var(--sv-primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Counters ---------- */
+.stats { background: var(--sv-surface); }
+.stat-value {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--sv-primary);
+}
+.stat-label { color: var(--sv-muted); font-weight: 600; letter-spacing: .5px; }
+
+/* ---------- Tables ---------- */
+.table-card {
+  background: #fff;
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius);
+  box-shadow: var(--sv-shadow);
+  overflow: hidden;
+}
+.table thead th {
+  background: var(--sv-surface);
+  color: var(--sv-muted);
+  text-transform: uppercase;
+  font-size: .74rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--sv-border);
+  white-space: nowrap;
+}
+.table tbody tr:hover { background: rgba(29, 78, 216, .04); }
+
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable .arrow { opacity: .35; font-size: .7rem; }
+th.sortable.asc .arrow, th.sortable.desc .arrow { opacity: 1; color: var(--sv-primary); }
+
+.avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--sv-primary);
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: .8rem;
+}
+
+/* ---------- Forms ---------- */
+.form-card {
+  background: #fff;
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius);
+  box-shadow: var(--sv-shadow);
+  padding: 2rem;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--sv-accent);
+  box-shadow: 0 0 0 .2rem rgba(14, 165, 233, .18);
+}
+.form-label { font-weight: 600; font-size: .9rem; }
+
+.info-tile {
+  border: 1px solid var(--sv-border);
+  border-radius: var(--sv-radius);
+  padding: 1.25rem;
+  background: #fff;
+  height: 100%;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--sv-ink);
+  color: rgba(255, 255, 255, .72);
+  padding: 3rem 0 1.25rem;
+}
+.site-footer h6 { color: #fff; font-weight: 700; letter-spacing: .5px; }
+.site-footer a { color: rgba(255, 255, 255, .72); }
+.site-footer a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  font-size: .87rem;
+}
+
+/* ---------- Back to top ---------- */
+#backToTop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--sv-primary);
+  color: #fff;
+  display: none;
+  z-index: 1030;
+  box-shadow: var(--sv-shadow);
+}
+
+@media (max-width: 767.98px) {
+  .hero { padding: 3rem 0 3.5rem; text-align: center; }
+  .hero p.lead { margin-inline: auto; }
+  .section { padding: 2.75rem 0; }
+}
