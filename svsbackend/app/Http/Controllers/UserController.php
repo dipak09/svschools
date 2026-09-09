@@ -30,4 +30,21 @@ class UserController extends Controller
         $students = User::all();
         return view('all-students', ['students' => $students]);
     }
+
+    /**
+     * Store a student submitted from the "Add Student" modal on the directory page.
+     */
+    public function StoreStudent(Request $request)
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        User::create($data);
+
+        return redirect()->route('students')
+            ->with('status', $data['name'] . ' has been added to the directory.');
+    }
 }
