@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TecherController;
 
 
 Route::get('/', function () {
@@ -39,4 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/student', UserController::class . '@student');
     Route::get('/all-students', UserController::class . '@AllStudent')->name('students');
     Route::post('/all-students', UserController::class . '@StoreStudent')->name('students.store');
+
+
+    Route::get('/all-techers', TecherController::class . '@AllTechers')->name('techers');
+    Route::post('/all-techers', TecherController::class . '@StoreTecher')->name('techers.store');
 });
