@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="SV Schools logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#g)"/>
+  <path d="M32 14 56 25 32 36 8 25z" fill="#ffffff"/>
+  <path d="M18 30v10c0 4.5 6.5 8 14 8s14-3.5 14-8V30l-14 6.4z" fill="#ffffff" opacity=".82"/>
+  <path d="M52 27v12" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="52" cy="41" r="3" fill="#ffffff"/>
+</svg>
