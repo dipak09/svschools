@@ -213,118 +213,6 @@ th.sortable.asc .arrow, th.sortable.desc .arrow { opacity: 1; color: var(--sv-pr
   font-size: .87rem;
 }
 
-/* ---------- Learn page ---------- */
-.learn-hero {
-  background: linear-gradient(135deg, rgba(29, 78, 216, .96) 0%, rgba(14, 165, 233, .9) 100%);
-  color: #fff;
-  padding: 4.5rem 0;
-}
-.learn-hero .lead { color: rgba(255,255,255,.86); max-width: 640px; }
-.learn-summary {
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 18px;
-  padding: 1.35rem;
-  backdrop-filter: blur(3px);
-}
-.resource-card {
-  background: #fff;
-  border: 1px solid var(--sv-border);
-  border-radius: 18px;
-  padding: 1.5rem;
-  height: 100%;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, .05);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.resource-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--sv-shadow);
-}
-.resource-icon {
-  width: 56px; height: 56px;
-  display: grid; place-items: center;
-  border-radius: 14px;
-  background: rgba(29, 78, 216, .1);
-  color: var(--sv-primary);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.resource-card h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: .5rem;
-}
-.resource-card p { color: var(--sv-muted); margin-bottom: 1rem; }
-.resource-meta {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--sv-primary);
-  background: rgba(29, 78, 216, .06);
-  border-radius: 999px;
-  padding: .45rem .75rem;
-}
-.learning-grid {
-  background: var(--sv-surface);
-  border: 1px solid var(--sv-border);
-  border-radius: 18px;
-  padding: 1.5rem;
-}
-.track-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 1rem;
-}
-.track-list li {
-  display: flex;
-  gap: .9rem;
-  align-items: flex-start;
-  background: #fff;
-  border: 1px solid var(--sv-border);
-  border-radius: 14px;
-  padding: .9rem 1rem;
-}
-.track-number {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--sv-primary);
-  color: #fff;
-  display: grid; place-items: center;
-  font-size: .8rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-.track-copy strong { display: block; margin-bottom: .15rem; }
-.track-copy span { color: var(--sv-muted); font-size: .9rem; }
-.milestone-card {
-  background: #fff;
-  border: 1px solid var(--sv-border);
-  border-radius: 18px;
-  padding: 1.5rem;
-  box-shadow: var(--sv-shadow);
-}
-.milestone-list {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: .8rem;
-}
-.milestone-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding-bottom: .6rem;
-  border-bottom: 1px solid var(--sv-border);
-}
-.milestone-list li:last-child { border-bottom: none; padding-bottom: 0; }
-.milestone-list span { color: var(--sv-muted); }
-
 /* ---------- Back to top ---------- */
 #backToTop {
   position: fixed;
@@ -344,8 +232,6 @@ th.sortable.asc .arrow, th.sortable.desc .arrow { opacity: 1; color: var(--sv-pr
   .hero { padding: 3rem 0 3.5rem; text-align: center; }
   .hero p.lead { margin-inline: auto; }
   .section { padding: 2.75rem 0; }
-  .learn-hero { padding: 3rem 0; }
-  .resource-card, .milestone-card, .learning-grid { padding: 1.2rem; }
 }
 
 /* ---------- Auth (login / register) ---------- */
