@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Techer;
+use Illuminate\Support\Facades\DB;
 
 class TecherController extends Controller
 {
     public function AllTechers()
     {
-        $techers = Techer::all();
+        $techers = Techer::get(); #Example of Eloquent ORM
+        $techers2  = DB::table('techers')->where('id', 2)->get(); #example of Query Builder
+        $techers3  = DB::select('SELECT * FROM techers WHERE id = 2'); #example of Raw SQL Query
+
+
+        #dd($techers,$techers2,$techers3);
+
+
+
         return view('all-teachers', compact('techers'));
     }
 
