@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TecherController;
+use App\Models\GymBanner;
 
 
 Route::get('/', function () {
@@ -12,8 +13,15 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/hello', function (Request $request) {
-    return view('hello', ['name' => $request->name ?? 'Akshaya']);
-});
+
+    // Same join as before, through the GymBanner -> Gym relationship.
+    $gym_data = GymBanner::with('gym')->get();
+
+    return view('hello', [
+        'name' => $request->name ?? 'Akshaya',
+        'gym_data' => $gym_data,
+        ]);
+})->name('hello');
 
 /*
 |--------------------------------------------------------------------------
