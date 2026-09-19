@@ -36,6 +36,11 @@
           <li class="nav-item">
             <a class="nav-link @if(request()->routeIs('students')) active @endif" href="{{ route('students') }}">Students</a>
           </li>
+          @auth
+            <li class="nav-item">
+              <a class="nav-link @if(request()->routeIs('fees')) active @endif" href="{{ route('fees') }}">Fees</a>
+            </li>
+          @endauth
 
           @auth
             <li class="nav-item">

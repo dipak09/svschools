@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="info-tile">
-            <div class="stat-value">&#8377; 2,45,000</div>
+            <div class="stat-value">&#8377; {{ number_format($collectedFees, 2) }}</div>
             <div class="stat-label">Fees collected</div>
           </div>
         </div>
@@ -55,6 +55,7 @@
             <h5 class="fw-bold mb-3">Quick actions</h5>
             <div class="d-flex flex-wrap gap-3">
               <a href="{{ route('students') }}" class="btn btn-sv">View all students</a>
+              <a href="{{ route('fees') }}" class="btn btn-sv-outline">Manage fees</a>
               <a href="{{ route('home') }}#features" class="btn btn-sv-outline">Browse modules</a>
               <form method="POST" action="{{ route('logout') }}" class="d-inline">
                 @csrf

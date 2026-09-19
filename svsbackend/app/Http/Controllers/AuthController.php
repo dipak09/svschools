@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use App\Models\Fee;
 
 class AuthController extends Controller
 {
@@ -97,6 +98,7 @@ class AuthController extends Controller
         return view('dashboard', [
             'user' => $request->user(),
             'studentCount' => User::count(),
+            'collectedFees' => Fee::sum('paid_amount'),
         ]);
     }
 }

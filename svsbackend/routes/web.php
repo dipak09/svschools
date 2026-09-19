@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TecherController;
+use App\Http\Controllers\FeeController;
 use App\Models\GymBanner;
 
 
@@ -52,4 +53,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/all-techers', TecherController::class . '@AllTechers')->name('techers');
     Route::post('/all-techers', TecherController::class . '@StoreTecher')->name('techers.store');
+
+    Route::get('/fees', [FeeController::class, 'index'])->name('fees');
+    Route::post('/fees', [FeeController::class, 'store'])->name('fees.store');
 });
