@@ -56,4 +56,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/fees', [FeeController::class, 'index'])->name('fees');
     Route::post('/fees', [FeeController::class, 'store'])->name('fees.store');
+    Route::get('/fees/{fee}/bill', [FeeController::class, 'bill'])->name('fees.bill');
 });

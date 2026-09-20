@@ -78,6 +78,7 @@
                 <th>Balance</th>
                 <th>Due date</th>
                 <th>Status</th>
+                <th class="text-end">Bill</th>
               </tr>
             </thead>
             <tbody>
@@ -101,10 +102,15 @@
                   <td>&#8377; {{ number_format($fee->balance, 2) }}</td>
                   <td>{{ $fee->due_date?->format('d M Y') ?? '-' }}</td>
                   <td data-search="{{ $fee->status }}"><span class="badge {{ $statusClass }}">{{ $fee->status }}</span></td>
+                  <td class="text-end">
+                    <a href="{{ route('fees.bill', $fee) }}" class="btn btn-sm btn-sv-outline" target="_blank" rel="noopener">
+                      Print Bill
+                    </a>
+                  </td>
                 </tr>
               @empty
                 <tr>
-                  <td colspan="7" class="text-center py-5">
+                  <td colspan="8" class="text-center py-5">
                     <p class="fw-semibold mb-1">No fee records yet.</p>
                     <p class="text-muted small mb-0">Add a fee record to start tracking collections.</p>
                   </td>

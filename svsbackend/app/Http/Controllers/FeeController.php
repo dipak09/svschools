@@ -37,4 +37,11 @@ class FeeController extends Controller
 
         return redirect()->route('fees')->with('status', 'Fee record added successfully.');
     }
+
+    public function bill(Fee $fee)
+    {
+        $fee->load('student');
+
+        return view('fees.bill', compact('fee'));
+    }
 }
