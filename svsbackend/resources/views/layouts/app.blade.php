@@ -33,16 +33,40 @@
           <li class="nav-item">
             <a class="nav-link @if(request()->routeIs('home')) active @endif" href="{{ route('home') }}">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link @if(request()->routeIs('students')) active @endif" href="{{ route('students') }}">Students</a>
-          </li>
           @auth
-            <li class="nav-item">
-              <a class="nav-link @if(request()->routeIs('fees')) active @endif" href="{{ route('fees') }}">Fees</a>
-            </li>
+            @if (auth()->user()->hasAnyRole(['staff', 'admin']))
+              <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('students')) active @endif" href="{{ route('students') }}">Students</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('fees')) active @endif" href="{{ route('fees') }}">Fees</a>
+              </li>
+            @endif
           @endauth
 
           @auth
+            @if (auth()->user()->canManageUsers())
+              <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.*')) active @endif" href="{{ route('admin.dashboard') }}">Management</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">School modules</a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{{ route('admin.students') }}">Students</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.teachers') }}">Teachers</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.parents') }}">Parents</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.classes') }}">Classes &amp; Sections</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.subjects') }}">Subjects</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.attendance') }}">Attendance</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.attendance.history') }}">Attendance history</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.academics') }}">Academics</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.announcements') }}">Announcements</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.reports') }}">Reports</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.activities') }}">Activity logs</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.roles') }}">Roles &amp; permissions</a></li>
+                </ul>
+              </li>
+            @endif
             <li class="nav-item">
               <a class="nav-link @if(request()->routeIs('dashboard')) active @endif" href="{{ route('dashboard') }}">Dashboard</a>
             </li>
@@ -103,7 +127,11 @@
           <h6 class="mb-3">Pages</h6>
           <ul class="list-unstyled d-grid gap-2 mb-0">
             <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="{{ route('students') }}">Students</a></li>
+            @auth
+              @if (auth()->user()->hasAnyRole(['staff', 'admin']))
+                <li><a href="{{ route('students') }}">Students</a></li>
+              @endif
+            @endauth
             @guest
               <li><a href="{{ route('register') }}">Register</a></li>
             @endguest

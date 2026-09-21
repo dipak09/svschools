@@ -1,27 +1,23 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeeController;
+use App\Http\Controllers\UserController;
+use App\Models\GymBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TecherController;
-use App\Http\Controllers\FeeController;
-use App\Models\GymBanner;
-
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 Route::get('/hello', function (Request $request) {
-
-    // Same join as before, through the GymBanner -> Gym relationship.
     $gym_data = GymBanner::with('gym')->get();
 
     return view('hello', [
         'name' => $request->name ?? 'Akshaya',
         'gym_data' => $gym_data,
-        ]);
+    ]);
 })->name('hello');
 
 /*
@@ -44,17 +40,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::get('/student', [UserController::class, 'student'])
+        ->middleware('role:student,staff,admin');
 
-    Route::get('/add-student', UserController::class . '@AddStudent');
-    Route::get('/student', UserController::class . '@student');
-    Route::get('/all-students', UserController::class . '@AllStudent')->name('students');
-    Route::post('/all-students', UserController::class . '@StoreStudent')->name('students.store');
+    Route::middleware('role:staff,admin')->group(function () {
+        Route::get('/add-student', [UserController::class, 'AddStudent'])->name('add.student');
+        Route::get('/all-students', [UserController::class, 'AllStudent'])->name('students');
+        Route::post('/all-students', [UserController::class, 'StoreStudent'])->name('students.store');
 
-
-    Route::get('/all-techers', TecherController::class . '@AllTechers')->name('techers');
-    Route::post('/all-techers', TecherController::class . '@StoreTecher')->name('techers.store');
-
-    Route::get('/fees', [FeeController::class, 'index'])->name('fees');
-    Route::post('/fees', [FeeController::class, 'store'])->name('fees.store');
-    Route::get('/fees/{fee}/bill', [FeeController::class, 'bill'])->name('fees.bill');
+        Route::get('/fees', [FeeController::class, 'index'])->name('fees');
+        Route::post('/fees', [FeeController::class, 'store'])->name('fees.store');
+        Route::get('/fees/{fee}', [FeeController::class, 'bill'])->name('fees.bill');
+    });
 });

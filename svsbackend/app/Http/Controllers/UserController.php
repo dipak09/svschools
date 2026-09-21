@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public function AllStudent(Request $request)
     {
-        $students = User::all();
+        $students = User::where('role', User::ROLE_STUDENT)->get();
         return view('all-students', ['students' => $students]);
     }
 
@@ -42,7 +42,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        User::create($data);
+        User::create($data + ['role' => User::ROLE_STUDENT]);
 
         return redirect()->route('students')
             ->with('status', $data['name'] . ' has been added to the directory.');
