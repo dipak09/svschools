@@ -1,0 +1,6 @@
+@extends('layouts.app')
+@section('title', 'Teacher Profile')
+@section('content')
+<section class="page-head"><div class="container"><a href="{{ route('admin.teachers') }}">Teachers</a><h1>Teacher Profile</h1></div></section>
+<section class="section"><div class="container"><div class="info-tile"><h2 class="h4">{{ $teacher->user->name }}</h2><p class="text-muted">{{ $teacher->user->email }} · {{ $teacher->employee_id }}</p><dl class="row"><dt class="col-sm-4">Qualification</dt><dd class="col-sm-8">{{ $teacher->qualification ?: '-' }}</dd><dt class="col-sm-4">Department</dt><dd class="col-sm-8">{{ $teacher->department ?: '-' }}</dd><dt class="col-sm-4">Assigned subjects</dt><dd class="col-sm-8">{{ $teacher->subjects->pluck('name')->join(', ') ?: '-' }}</dd><dt class="col-sm-4">Assigned classes</dt><dd class="col-sm-8">{{ $teacher->classes->pluck('name')->join(', ') ?: '-' }}</dd></dl><a class="btn btn-sv" href="{{ route('admin.teachers.edit', $teacher) }}">Edit teacher</a></div></div></section>
+@endsection

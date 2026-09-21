@@ -1,0 +1,6 @@
+@extends('layouts.app')
+@section('title', 'User Details')
+@section('content')
+<section class="page-head"><div class="container"><h1 class="mb-1">User details</h1><p class="text-muted mb-0">Account information and access status.</p></div></section>
+<section class="section"><div class="container"><div class="row justify-content-center"><div class="col-lg-8"><div class="info-tile"><div class="d-flex justify-content-between align-items-start mb-4"><div><h2 class="h4 mb-1">{{ $user->name }}</h2><p class="text-muted mb-0">{{ $user->email }}</p></div><span class="badge {{ $user->isActive() ? 'text-bg-success' : 'text-bg-secondary' }}">{{ ucfirst($user->status) }}</span></div><dl class="row mb-4"><dt class="col-sm-4">Role</dt><dd class="col-sm-8">{{ str_replace('_', ' ', ucfirst($user->role)) }}</dd><dt class="col-sm-4">Phone</dt><dd class="col-sm-8">{{ $user->phone ?: '-' }}</dd><dt class="col-sm-4">Created</dt><dd class="col-sm-8">{{ $user->created_at?->format('d M Y, h:i A') }}</dd><dt class="col-sm-4">Last updated</dt><dd class="col-sm-8">{{ $user->updated_at?->format('d M Y, h:i A') }}</dd></dl><a class="btn btn-sv" href="{{ route('admin.users.edit', $user) }}">Edit user</a> <a class="btn btn-light" href="{{ route('admin.users.index') }}">Back to users</a></div></div></div></div></section>
+@endsection

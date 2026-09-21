@@ -36,6 +36,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => User::ROLE_STUDENT,
             'password' => $data['password'],
         ]);
 
@@ -96,7 +97,7 @@ class AuthController extends Controller
     {
         return view('dashboard', [
             'user' => $request->user(),
-            'studentCount' => User::count(),
+            'studentCount' => User::where('role', User::ROLE_STUDENT)->count(),
         ]);
     }
 }

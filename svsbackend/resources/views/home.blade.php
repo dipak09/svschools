@@ -19,7 +19,9 @@
           <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
             @auth
               <a href="{{ route('dashboard') }}" class="btn btn-light btn-sv-outline bg-white">Go to Dashboard</a>
-              <a href="{{ route('students') }}" class="btn btn-light px-4 fw-semibold">View Students</a>
+              @if (auth()->user()->hasAnyRole(['staff', 'admin']))
+                <a href="{{ route('students') }}" class="btn btn-light px-4 fw-semibold">View Students</a>
+              @endif
             @else
               <a href="{{ route('login') }}" class="btn btn-light btn-sv-outline bg-white">Sign in</a>
               <a href="{{ route('register') }}" class="btn btn-light px-4 fw-semibold">Create an account</a>

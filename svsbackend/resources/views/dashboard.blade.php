@@ -26,7 +26,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="info-tile">
             <div class="stat-value">{{ number_format($studentCount) }}</div>
-            <div class="stat-label">Registered accounts</div>
+            <div class="stat-label">Students</div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -54,7 +54,9 @@
           <div class="form-card">
             <h5 class="fw-bold mb-3">Quick actions</h5>
             <div class="d-flex flex-wrap gap-3">
-              <a href="{{ route('students') }}" class="btn btn-sv">View all students</a>
+              @if ($user->hasAnyRole(['staff', 'admin']))
+                <a href="{{ route('students') }}" class="btn btn-sv">View all students</a>
+              @endif
               <a href="{{ route('home') }}#features" class="btn btn-sv-outline">Browse modules</a>
               <form method="POST" action="{{ route('logout') }}" class="d-inline">
                 @csrf
