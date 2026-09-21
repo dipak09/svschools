@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -20,16 +21,20 @@ class AdminManagementTest extends TestCase
     public function test_admin_can_create_and_filter_users(): void
     {
         $admin = User::factory()->create(['role' => User::ROLE_ADMIN]);
+        $csrfToken = 'test-token';
 
-        $this->actingAs($admin)->post(route('admin.users.store'), [
-            'name' => 'School Principal',
-            'email' => 'principal@svschools.edu',
-            'phone' => '9876543210',
-            'role' => User::ROLE_PRINCIPAL,
-            'status' => 'active',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
-        ])->assertRedirect(route('admin.users.index'));
+        $this->actingAs($admin)
+            ->withSession(['_token' => $csrfToken])
+            ->post(route('admin.users.store'), [
+                '_token' => $csrfToken,
+                'name' => 'School Principal',
+                'email' => 'principal@svschools.edu',
+                'phone' => '9876543210',
+                'role' => User::ROLE_PRINCIPAL,
+                'status' => 'active',
+                'password' => 'password123',
+                'password_confirmation' => 'password123',
+            ])->assertRedirect(route('admin.users.index'));
 
         $this->assertDatabaseHas('users', [
             'email' => 'principal@svschools.edu',

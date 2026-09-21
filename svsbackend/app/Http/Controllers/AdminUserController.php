@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class AdminUserController extends Controller
 {
@@ -55,7 +56,7 @@ class AdminUserController extends Controller
         $data['password'] = $request->string('password')->toString();
 
         $user = User::create($data);
-        $user->roles()->sync([Role::where('name', $data['role'])->value('id')]);
+        $this->syncUserRole($user, $data['role']);
         $this->log('created', 'users', "User {$user->name} was created.");
 
         return to_route('admin.users.index')->with('status', 'User created successfully.');
@@ -85,7 +86,7 @@ class AdminUserController extends Controller
         }
 
         $user->update($data);
-        $user->roles()->sync([Role::where('name', $user->role)->value('id')]);
+        $this->syncUserRole($user, $user->role);
         $this->log('updated', 'users', "User {$user->name} was updated.");
 
         return to_route('admin.users.index')->with('status', 'User updated successfully.');
@@ -121,6 +122,16 @@ class AdminUserController extends Controller
             'status' => ['required', Rule::in(['active', 'inactive'])],
             'password' => [$user ? 'nullable' : 'required', 'string', 'min:8', 'confirmed'],
         ]);
+    }
+
+    private function syncUserRole(User $user, string $roleName): void
+    {
+        $role = Role::firstOrCreate(
+            ['name' => $roleName],
+            ['label' => Str::title(str_replace('_', ' ', $roleName))]
+        );
+
+        $user->roles()->sync([$role->id]);
     }
 
     private function log(string $action, string $module, string $description): void

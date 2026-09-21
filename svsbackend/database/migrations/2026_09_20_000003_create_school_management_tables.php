@@ -31,19 +31,21 @@ return new class extends Migration
             $table->timestamps();
             $table->unique(['school_class_id', 'name']);
         });
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
-            $table->string('admission_number')->unique();
-            $table->date('date_of_birth')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('address')->nullable();
-            $table->date('admission_date')->nullable();
-            $table->string('roll_number')->nullable();
-            $table->foreignId('school_class_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('section_id')->nullable()->constrained()->nullOnDelete();
-            $table->timestamps();
-        });
+        if (! Schema::hasTable('students')) {
+            Schema::create('students', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
+                $table->string('admission_number')->unique();
+                $table->date('date_of_birth')->nullable();
+                $table->string('gender')->nullable();
+                $table->string('address')->nullable();
+                $table->date('admission_date')->nullable();
+                $table->string('roll_number')->nullable();
+                $table->foreignId('school_class_id')->nullable()->constrained()->nullOnDelete();
+                $table->foreignId('section_id')->nullable()->constrained()->nullOnDelete();
+                $table->timestamps();
+            });
+        }
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
