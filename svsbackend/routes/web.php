@@ -13,7 +13,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/hello', function (Request $request) {
-
     // Same join as before, through the GymBanner -> Gym relationship.
     $gym_data = GymBanner::with('gym')->get();
 
