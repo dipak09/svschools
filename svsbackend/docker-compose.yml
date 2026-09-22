@@ -1,0 +1,72 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: svschool-app:local
+    container_name: svschool-app
+    restart: unless-stopped
+    ports:
+      # Apache listens on 8000 inside the container as well
+      - "8000:8000"
+    environment:
+      APP_NAME: SVSchool
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_DATABASE: svsschool
+      DB_USERNAME: svsschool
+      DB_PASSWORD: secret
+      REDIS_CLIENT: phpredis
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+      RUN_MIGRATIONS: "true"
+    volumes:
+      - app-storage:/var/www/html/storage
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  db:
+    image: mysql:8.0
+    container_name: svschool-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: svsschool
+      MYSQL_USER: svsschool
+      MYSQL_PASSWORD: secret
+    ports:
+      # Host 3306 is taken by the local MySQL, so expose on 3307
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-psecret", "-usvsschool"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  redis:
+    image: redis:7-alpine
+    container_name: svschool-redis
+    restart: unless-stopped
+    ports:
+      # Host 6379 is taken by the local Redis, so expose on 6380
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  db-data:
+  redis-data:
+  app-storage:

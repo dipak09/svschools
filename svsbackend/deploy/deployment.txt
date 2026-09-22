@@ -1,0 +1,30 @@
+Flipcart App
+===================================
+Frontend
+        HTML
+        CSS + Bootstrap 5
+        Jquery
+Backend
+        Nodejs
+Database
+        Mysql
+Web server
+        Apache2
+Mobile
+        Flutter
+
+
+
+
+SVSchool Web App
+===================================
+Frontend
+        HTML + Blade Template
+        CSS + Bootstrap 5
+        Jquery
+Backend
+        Laravel 12
+Database
+        Mysql
+Web server
+        Apache2

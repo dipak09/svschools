@@ -1,0 +1,32 @@
+.git
+.github
+.gitignore
+.gitattributes
+.editorconfig
+
+# Rebuilt inside the image
+vendor
+node_modules
+public/build
+public/hot
+public/storage
+
+# Host-specific configuration and state
+.env
+.env.backup
+.env.production
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+database/database.sqlite
+*.log
+
+.phpunit.result.cache
+.phpunit.cache
+.idea
+.vscode
+.fleet
+Dockerfile
+docker-compose.yml
+.dockerignore
