@@ -2,7 +2,10 @@ AGENT.md
 .agents
 CLAUDE.md
 .cursor
-.github
+.github/*
+!.github/workflows/
+.github/workflows/*
+!.github/workflows/*.yml
 .jetro
 .mcp.json
 projects
