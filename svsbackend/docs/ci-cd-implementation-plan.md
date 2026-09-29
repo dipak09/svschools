@@ -19,7 +19,7 @@ This document is the implementation and deployment guide. The GitHub Actions wor
 
 ## Intended release flow
 
-1. Developer commits and pushes changes to `dipak`.
+1. Developer commits and pushes changes to `dipak`. for test
 2. GitHub Actions checks out the Laravel app, runs validation, builds the production image, starts it for an image smoke test, and publishes it to Docker Hub.
 3. Each successful build is published with an immutable commit-SHA tag and the moving `latest` tag. The SHA tag is the deployment/rollback reference; `latest` remains available as requested.
 4. The operator deploys on the server by pulling the selected image tag, running database migrations and cache preparation, restarting the app, and performing production health checks.
