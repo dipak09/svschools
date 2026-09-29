@@ -158,23 +158,26 @@ jobs:
           script: |
             cd /var/www/html/svschools
 
-            # Set immutable image SHA tag for deployment
+            # Export target commit SHA tag
             export APP_TAG=${{ github.sha }}
 
-            # 1. Pull the published Docker Hub image SHA tag
+            # 1. Pull the published Docker Hub image
             docker compose pull app
 
-            # 2. Run database migrations using the isolated container
-            docker compose run --rm --no-deps app php artisan migrate --force
+            # 2. Start DB and Redis containers so MySQL is reachable
+            docker compose up -d db redis
 
-            # 3. Recreate app container with new image
-            docker compose up -d --no-build app
+            # 3. Run database migrations (without --no-deps)
+            docker compose run --rm app php artisan migrate --force
 
-            # 4. Clear and rebuild production Laravel caches
+            # 4. Start/Recreate the app container
+            docker compose up -d app
+
+            # 5. Clear and rebuild production Laravel caches
             docker compose exec -T app php artisan config:clear
             docker compose exec -T app php artisan view:clear
             docker compose exec -T app php artisan config:cache
             docker compose exec -T app php artisan view:cache
 
-            # 5. Execute endpoint health check
+            # 6. Execute endpoint health check
             curl --fail --silent --show-error http://localhost:9000/up || exit 1
