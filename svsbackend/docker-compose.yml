@@ -8,12 +8,12 @@ services:
     restart: unless-stopped
     ports:
       # Apache listens on 8000 inside the container as well
-      - "8000:8000"
+      - "9000:8000"
     environment:
       APP_NAME: SVSchool
       APP_ENV: local
       APP_DEBUG: "true"
-      APP_URL: http://localhost:8000
+      APP_URL: http://localhost:9000
       DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: "3306"
