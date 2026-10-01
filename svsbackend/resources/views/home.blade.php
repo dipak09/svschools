@@ -9,8 +9,8 @@
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-7">
-          <span class="badge text-bg-light text-primary mb-3 px-3 py-2">Academic Session 2026 - 27 - 28</span>
-          <h1 class="mb-3">Run your entire school from one dashboard</h1>
+          <span class="badge text-bg-light text-primary mb-3 px-3 py-2">Academic Session 2027 - 2028</span>
+          <h1 class="mb-3">Running your entire school from one dashboard</h1>
           <p class="lead mb-4">
             SV Schools brings admissions, student records, attendance, timetables and
             fee collection together, so your staff spends less time on paperwork and
