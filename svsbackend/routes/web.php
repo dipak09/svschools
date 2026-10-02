@@ -12,7 +12,13 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/hello', function (Request $request) {
-    return view('hello', ['name' => $request->name ?? 'Akshaya']);
+   $gymdata = DB::select("SELECT g.id,g.name,gb.banner,gb.link FROM gym g
+   JOIN gym_banners gb ON g.id=gb.gym_id");
+   //dd($gymdata);
+   foreach($gymdata as $gym){
+    echo $gym->name.'<br>';  
+   }
+return view('hello', ['name' => $request->name ?? 'Ramya']);
 });
 
 /*
@@ -20,7 +26,6 @@ Route::get('/hello', function (Request $request) {
 | Authentication
 |--------------------------------------------------------------------------
 */
-
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
